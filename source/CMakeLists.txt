@@ -1,7 +1,10 @@
+
+ add_executable(vec2 vec2.cpp)
+
 # Build example
-add_executable(example
+ add_executable(example
   window.cpp
-  glew.c
+ glew.c
   example.cpp
   )
 target_link_libraries(example
@@ -23,5 +26,4 @@ target_link_libraries(tests
   nanovg
   ${OPENGL_LIBRARIES}
   )
-
 

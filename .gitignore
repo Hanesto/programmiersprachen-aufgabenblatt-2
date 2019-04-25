@@ -20,5 +20,8 @@
 *.out
 *.app
 
+# VsCode Folder
+.vscode
+
 build
 cmake_out
