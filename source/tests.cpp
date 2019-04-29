@@ -99,6 +99,76 @@ TEST_CASE("Matrizen Multiplikation")
   Mat2 b;
 
   a *= b;
+  REQUIRE(a.e_00 == Approx(3.0f));
+  REQUIRE(a.e_01 == Approx(2.5f));
+  REQUIRE(a.e_10 == Approx(4.0f));
+  REQUIRE(a.e_11 == Approx(0.4f));
+}
+
+TEST_CASE("Matrizen Multiplikation 2")
+{
+  Mat2 a{3.0f, 2.5f, 1.5f, 0.4f};
+  Mat2 b;
+  Mat2 c;
+
+  c = a * b;
+  REQUIRE(c.e_00 == Approx(3.0f));
+  REQUIRE(c.e_01 == Approx(2.5f));
+  REQUIRE(c.e_10 == Approx(4.0f));
+  REQUIRE(c.e_11 == Approx(0.4f));
+}
+
+TEST_CASE("Vektor-Matrix Multiplikation")
+{
+  Mat2 m{3.0f, 2.5f, 1.5f, 0.4f};
+  Vec2 v{4.0f, 2.0f};
+  Vec2 erg;
+
+  erg = m * v;
+  REQUIRE(erg.x == Approx(17.0f));
+  REQUIRE(erg.y == Approx(6.8f));
+
+  erg = v * m;
+  REQUIRE(erg.x == Approx(17.0f));
+  REQUIRE(erg.y == Approx(6.8f));
+}
+
+TEST_CASE("Determinate")
+{
+  Mat2 m{3.0f, -2.5f, 1.5f, 0.4f};
+
+  float det;
+  det = m.det();
+  REQUIRE(det == Approx(-2.55f));
+}
+
+TEST_CASE("Inverses einer Matrix")
+{
+  //funktioniert noch nicht
+}
+
+TEST_CASE("Transponierte Matrix")
+{
+  Mat2 m{3.0f, 2.5f, -1.5f, 0.4f};
+  Mat2 erg;
+
+  erg = transpose(m);
+  REQUIRE(erg.e_00 == m.e_00);
+  REQUIRE(erg.e_01 == m.e_10);
+  REQUIRE(erg.e_10 == m.e_01);
+  REQUIRE(erg.e_11 == m.e_11);
+}
+
+TEST_CASE("Rotationsmatrix")
+{
+  float rot = 30.0f;
+  Mat2 erg;
+
+  erg = make_rotation_mat2(rot);
+  REQUIRE(erg.e_00 == Approx(0.866f));
+  REQUIRE(erg.e_00 == Approx(-0.5f));
+  REQUIRE(erg.e_00 == Approx(0.5f));
+  REQUIRE(erg.e_00 == Approx(0.866f));
 }
 
 int main(int argc, char *argv[])
