@@ -2,6 +2,7 @@
 #include <catch.hpp>
 #include "vec2.hpp"
 #include "mat2.hpp"
+#include "color.hpp"
 
 TEST_CASE("Vektor Initialisierung")
 {
@@ -169,6 +170,15 @@ TEST_CASE("Rotationsmatrix")
   REQUIRE(erg.e_00 == Approx(-0.5f));
   REQUIRE(erg.e_00 == Approx(0.5f));
   REQUIRE(erg.e_00 == Approx(0.866f));
+}
+
+TEST_CASE("Schönes Stein-Grau")
+{
+  Color grau;
+
+  REQUIRE(grau.r == 0.188f);
+  REQUIRE(grau.g == 0.122f);
+  REQUIRE(grau.b == 0.121f);
 }
 
 int main(int argc, char *argv[])
