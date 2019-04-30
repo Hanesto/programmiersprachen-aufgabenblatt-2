@@ -7,4 +7,4 @@ struct Color
     float r = 0.188;
     float g = 0.122;
     float b = 0.121;
-}
+};

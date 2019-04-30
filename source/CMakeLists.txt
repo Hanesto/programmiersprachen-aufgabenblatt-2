@@ -1,6 +1,3 @@
-
- add_executable(vec2 vec2.cpp)
-
 # Build example
  add_executable(example
   window.cpp
@@ -20,6 +17,9 @@ add_executable(tests
   glew.c
   vec2.cpp
   mat2.cpp
+  circle.cpp
+  rectangle.cpp
+  circle.cpp
   tests.cpp
   )
 target_link_libraries(tests

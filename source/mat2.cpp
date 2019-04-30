@@ -54,11 +54,14 @@ float Mat2::det() const
 //inverse Matrix
 Mat2 inverse (Mat2 const& m)
 {
-    Mat2 einheitsM;
+  float temp = 1/ m.det();
+  Mat2 erg;
+  erg.e_00 = temp * m.e_11;
+  erg.e_01 = temp * -m.e_01;
+  erg.e_10 = temp * -m.e_10;
+  erg.e_11 = temp * m.e_00;
 
-    //Rechnung bitte hier rein
-
-    return einheitsM;
+  return erg;
 }
 
 //transponierte Matrix

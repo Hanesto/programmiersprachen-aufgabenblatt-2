@@ -3,6 +3,8 @@
 #include "vec2.hpp"
 #include "mat2.hpp"
 #include "color.hpp"
+#include "circle.hpp"
+#include "rectangle.hpp"
 
 TEST_CASE("Vektor Initialisierung")
 {
@@ -18,7 +20,7 @@ TEST_CASE("Vektor-Addition")
 
   a += b;
   REQUIRE(a.x == Approx(4.0f)); 
-  REQUIRE(a.y == Approx(10.7f));
+  REQUIRE(a.y == Approx(9.8f));
   
 }
 
@@ -31,7 +33,7 @@ TEST_CASE("Vektor-Addition 2")
   c = a + b;
 
   REQUIRE(c.x == Approx(4.0f));
-  REQUIRE(c.y == Approx(10.7f));
+  REQUIRE(c.y == Approx(9.8f));
 }
 
 TEST_CASE("Vektor-Subtraktion")
@@ -102,7 +104,7 @@ TEST_CASE("Matrizen Multiplikation")
   a *= b;
   REQUIRE(a.e_00 == Approx(3.0f));
   REQUIRE(a.e_01 == Approx(2.5f));
-  REQUIRE(a.e_10 == Approx(4.0f));
+  REQUIRE(a.e_10 == Approx(1.5f));
   REQUIRE(a.e_11 == Approx(0.4f));
 }
 
@@ -115,7 +117,7 @@ TEST_CASE("Matrizen Multiplikation 2")
   c = a * b;
   REQUIRE(c.e_00 == Approx(3.0f));
   REQUIRE(c.e_01 == Approx(2.5f));
-  REQUIRE(c.e_10 == Approx(4.0f));
+  REQUIRE(c.e_10 == Approx(1.5f));
   REQUIRE(c.e_11 == Approx(0.4f));
 }
 
@@ -140,13 +142,22 @@ TEST_CASE("Determinate")
 
   float det;
   det = m.det();
-  REQUIRE(det == Approx(-2.55f));
+  REQUIRE(det == Approx(4.95f));
 }
 
 TEST_CASE("Inverses einer Matrix")
 {
-  //funktioniert noch nicht
+  Mat2 m{3.0f, -2.5f, 1.5f, 0.4f};
+
+  Mat2 erg;
+  erg = inverse(m);
+
+  REQUIRE(erg.e_00 == Approx(0.08081f));
+  REQUIRE(erg.e_01 == Approx(0.50505f));
+  REQUIRE(erg.e_10 == Approx(-0.30303f));
+  REQUIRE(erg.e_11 == Approx(0.60606f));
 }
+  
 
 TEST_CASE("Transponierte Matrix")
 {
@@ -166,10 +177,10 @@ TEST_CASE("Rotationsmatrix")
   Mat2 erg;
 
   erg = make_rotation_mat2(rot);
-  REQUIRE(erg.e_00 == Approx(0.866f));
-  REQUIRE(erg.e_00 == Approx(-0.5f));
-  REQUIRE(erg.e_00 == Approx(0.5f));
-  REQUIRE(erg.e_00 == Approx(0.866f));
+  REQUIRE(erg.e_00 == Approx(0.15425f));
+  REQUIRE(erg.e_01 == Approx(0.98803f));
+  REQUIRE(erg.e_10 == Approx(-0.98803f));
+  REQUIRE(erg.e_11 == Approx(0.15425f));
 }
 
 TEST_CASE("Schönes Stein-Grau")
@@ -179,6 +190,29 @@ TEST_CASE("Schönes Stein-Grau")
   REQUIRE(grau.r == 0.188f);
   REQUIRE(grau.g == 0.122f);
   REQUIRE(grau.b == 0.121f);
+}
+
+TEST_CASE("Rechteck Umfang")
+{
+  Vec2 min{3.0f, -2.0f};
+  Vec2 max{5.0f, 5.0f};
+  Rectangle rect{min, max};
+  float circumference_;
+  
+  circumference_ = rect.circumference();
+  
+  REQUIRE(circumference_ == Approx(18.0f));
+}
+
+TEST_CASE("Kreis Umfang")
+{
+  Vec2 center{0.0f, 0.0f};
+  Circle kreis{center, 4};
+  float circumference_;
+
+  circumference_ = kreis.circumference();
+
+  REQUIRE(circumference_ == Approx(25.132741229f));
 }
 
 int main(int argc, char *argv[])
