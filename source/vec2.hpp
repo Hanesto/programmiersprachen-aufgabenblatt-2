@@ -1,5 +1,5 @@
-# ifndef VEC2_HPP
-# define VEC2_HPP
+#ifndef VEC2_HPP
+#define VEC2_HPP
 
 struct Vec2
 {
@@ -17,4 +17,4 @@ Vec2 operator -(Vec2 const& u, Vec2 const& v);
 Vec2 operator *(Vec2 const& u, float s);
 Vec2 operator /(Vec2 const& u, float s);
 
-# endif // VEC2_HPP
+#endif 

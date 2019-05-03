@@ -1,6 +1,10 @@
 # Build example
  add_executable(example
   window.cpp
+  vec2.cpp
+  mat2.cpp
+  rectangle.cpp
+  circle.cpp
   glew.c
   example.cpp
   )
@@ -19,7 +23,7 @@ add_executable(tests
   mat2.cpp
   circle.cpp
   rectangle.cpp
-  circle.cpp
+  window.cpp
   tests.cpp
   )
 target_link_libraries(tests
@@ -28,4 +32,3 @@ target_link_libraries(tests
   nanovg
   ${OPENGL_LIBRARIES}
   )
-

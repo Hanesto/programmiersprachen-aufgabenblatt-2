@@ -187,16 +187,17 @@ TEST_CASE("Schönes Stein-Grau")
 {
   Color grau;
 
-  REQUIRE(grau.r == 0.188f);
-  REQUIRE(grau.g == 0.122f);
-  REQUIRE(grau.b == 0.121f);
+  REQUIRE(grau.r == 0.5f);
+  REQUIRE(grau.g == 0.5f);
+  REQUIRE(grau.b == 0.5f);
 }
 
 TEST_CASE("Rechteck Umfang")
 {
   Vec2 min{3.0f, -2.0f};
   Vec2 max{5.0f, 5.0f};
-  Rectangle rect{min, max};
+  Color color{0.3, 0.5, 0.1};
+  Rectangle rect{min, max, color};
   float circumference_;
   
   circumference_ = rect.circumference();
@@ -207,7 +208,8 @@ TEST_CASE("Rechteck Umfang")
 TEST_CASE("Kreis Umfang")
 {
   Vec2 center{0.0f, 0.0f};
-  Circle kreis{center, 4};
+  Color color;
+  Circle kreis{center, 4, color};
   float circumference_;
 
   circumference_ = kreis.circumference();
