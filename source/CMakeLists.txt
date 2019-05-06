@@ -5,6 +5,7 @@
   mat2.cpp
   rectangle.cpp
   circle.cpp
+  clock.cpp
   glew.c
   example.cpp
   )

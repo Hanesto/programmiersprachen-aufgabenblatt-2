@@ -13,6 +13,7 @@ public:
     float circumference();
     void draw(Window const& win, int step);
     void draw(Window const& win, int step, bool isHighlight);
+    void is_inside(Window const& win, Vec2 const& point);
 
 private:
     Color color_;

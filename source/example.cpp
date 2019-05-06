@@ -1,6 +1,7 @@
 #include "window.hpp"
 #include "rectangle.hpp"
 #include "circle.hpp"
+#include "clock.hpp"
 #include <GLFW/glfw3.h>
 #include <utility>
 #include <cmath>
@@ -17,8 +18,8 @@ int main(int argc, char* argv[])
 
     Vec2 min_ = {50.0f, 60.0f};
     Vec2 max_ = {200.0f, 300.0f};
-    Vec2 min2_ = {300.0f, 500.0f};
-    Vec2 max2_ = {600.0f, 400.0f};
+    Vec2 min2_ = {300.0f, 400.0f};
+    Vec2 max2_ = {600.0f, 500.0f};
 
     Color rectColor;
     Color circColor = {0.2, 0.3, 0.6};
@@ -32,6 +33,19 @@ int main(int argc, char* argv[])
     rect2.draw(win, 4);
     circ.draw(win, 1);
     circ2.draw(win, 1, true);
+
+    Vec2 point = {70, 150};
+    Vec2 point2 = {20, 150};
+    Vec2 point3 = {250, 250};
+    Vec2 point4 = {250, 200};
+
+    rect.is_inside(win, point);
+    rect.is_inside(win, point2);
+    circ.is_inside(win, point3);
+    circ.is_inside(win, point4);
+
+    Clock grandfatherClock;
+    grandfatherClock.do_time(win);
 
     bool left_pressed = win.get_mouse_button(GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
 

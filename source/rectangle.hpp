@@ -13,6 +13,7 @@ public:
     float circumference();
     void draw(Window const& window);
     void draw(Window const& window, int thickness);
+    void is_inside(Window const& window, Vec2 const& point);
 
 private:
     Color color_;
