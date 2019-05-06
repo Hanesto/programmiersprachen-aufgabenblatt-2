@@ -81,6 +81,11 @@ Mat2 make_rotation_mat2(float phi)
 {
     Mat2 rotMat;
 
+    if(phi < 0)
+    {
+        return rotMat;
+    }
+
     rotMat.e_00 = cos(phi);
     rotMat.e_01 = -sin(phi);
     rotMat.e_10 = sin(phi);

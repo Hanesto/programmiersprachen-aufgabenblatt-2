@@ -16,10 +16,10 @@ TEST_CASE("Vektor Initialisierung")
 TEST_CASE("Vektor-Addition")
 {
   Vec2 a{2.5f, 3.1f};
-  Vec2 b{1.5f, 6.7f};
+  Vec2 b{-1.5f, 6.7f};
 
   a += b;
-  REQUIRE(a.x == Approx(4.0f)); 
+  REQUIRE(a.x == Approx(1.0f)); 
   REQUIRE(a.y == Approx(9.8f));
   
 }
@@ -27,44 +27,48 @@ TEST_CASE("Vektor-Addition")
 TEST_CASE("Vektor-Addition 2")
 {
   Vec2 a{2.5f, 3.1f};
-  Vec2 b{1.5f, 6.7f};
+  Vec2 b{-1.5f, 6.7f};
   Vec2 c;
 
   c = a + b;
 
-  REQUIRE(c.x == Approx(4.0f));
+  REQUIRE(c.x == Approx(1.0f));
   REQUIRE(c.y == Approx(9.8f));
 }
 
 TEST_CASE("Vektor-Subtraktion")
 {
   Vec2 a{2.5f, 3.1f};
-  Vec2 b{1.5f, 6.7f};
+  Vec2 b{1.5f, -6.7f};
 
   a -= b;
   REQUIRE(a.x == Approx(1.0f)); 
-  REQUIRE(a.y == Approx(-3.6f));
+  REQUIRE(a.y == Approx(9.8f));
 }
 
 TEST_CASE("Vektor-Subtraktion 2")
 {
   Vec2 a{2.5f, 3.1f};
-  Vec2 b{1.5f, 6.7f};
+  Vec2 b{1.5f, -6.7f};
   Vec2 c;
 
   c = a - b;
 
   REQUIRE(c.x == Approx(1.0f));
-  REQUIRE(c.y == Approx(-3.6f));
+  REQUIRE(c.y == Approx(9.8f));
 }
 
 TEST_CASE("Skalar-Multiplikation")
 {
   Vec2 a{2.5f, 3.1f};
+  Vec2 b{2.5f, 0.0f};
 
   a *= 2;
+  b *= -2;
   REQUIRE(a.x == Approx(5.0f)); 
   REQUIRE(a.y == Approx(6.2f));
+  REQUIRE(b.x == -5.0f);
+  REQUIRE(b.y == Approx(0));
 }
 
 TEST_CASE("Skalar-Multiplikation 2")
@@ -79,11 +83,11 @@ TEST_CASE("Skalar-Multiplikation 2")
 
 TEST_CASE("Skalar-Division")
 {
-  Vec2 a{2.5f, 3.1f};
+  Vec2 a{2.5f, -3.1f};
 
   a /= 2;
   REQUIRE(a.x == Approx(1.25f)); 
-  REQUIRE(a.y == Approx(1.55f));
+  REQUIRE(a.y == Approx(-1.55f));
 }
 
 TEST_CASE("Skalar-Division 2")
@@ -174,13 +178,21 @@ TEST_CASE("Transponierte Matrix")
 TEST_CASE("Rotationsmatrix")
 {
   float rot = 30.0f;
+  float rot2 = -30.0f;
   Mat2 erg;
+  Mat2 erg2;
 
   erg = make_rotation_mat2(rot);
   REQUIRE(erg.e_00 == Approx(0.15425f));
   REQUIRE(erg.e_01 == Approx(0.98803f));
   REQUIRE(erg.e_10 == Approx(-0.98803f));
   REQUIRE(erg.e_11 == Approx(0.15425f));
+
+  erg2 = make_rotation_mat2(rot2);
+  REQUIRE(erg2.e_00 == 1);
+  REQUIRE(erg2.e_01 == 0);
+  REQUIRE(erg2.e_10 == 0);
+  REQUIRE(erg2.e_11 == 1);
 }
 
 TEST_CASE("Schönes Stein-Grau")
